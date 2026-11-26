@@ -273,18 +273,17 @@ def paint_body_columns(sheet):
 
 def paint_brief_cell(sheet, brief, origin_x, origin_y, cell_w):
     pen = sheet.pen
+    head_face = typeface(FONT_DIR_SERIF_BOLD, 19)
+    body_face = typeface(FONT_DIR_SERIF, 15)
     pen.text((origin_x, origin_y), brief["kicker"],
              font=typeface(FONT_DIR_SANS_BOLD, 14), fill=SPOT_RGB)
     cursor_y = origin_y + 20
-    for line in fit_lines(pen, brief["headline"],
-                          typeface(FONT_DIR_SERIF_BOLD, 19), cell_w):
-        pen.text((origin_x, cursor_y), line,
-                 font=typeface(FONT_DIR_SERIF_BOLD, 19), fill=INK_RGB)
+    for line in fit_lines(pen, brief["headline"], head_face, cell_w):
+        pen.text((origin_x, cursor_y), line, font=head_face, fill=INK_RGB)
         cursor_y += 24
-    for line in fit_lines(pen, brief["body"],
-                          typeface(FONT_DIR_SERIF, 15), cell_w):
-        pen.text((origin_x, cursor_y), line,
-                 font=typeface(FONT_DIR_SERIF, 15), fill=SECONDARY_RGB)
+    for line in fit_lines(pen, brief["body"], body_face, cell_w):
+        pen.text((origin_x, cursor_y), line, font=body_face,
+                 fill=SECONDARY_RGB)
         cursor_y += 21
 
 
